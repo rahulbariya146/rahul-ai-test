@@ -5,6 +5,8 @@ import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { PolldetailsComponent } from './polldetails/polldetails.component';
+import { Hit } from '../modals/hit'
+import { ApiResult } from '../modals/api-result'
 
 @Component({
   selector: 'app-polls',
@@ -14,11 +16,10 @@ import { PolldetailsComponent } from './polldetails/polldetails.component';
 export class PollsComponent implements OnInit, OnDestroy {
 
   // Init Variables.
-  dataSource: any;
+  dataSource: MatTableDataSource<Hit>;
   displayedColumns: string[] = ['title', 'url', 'created_at', 'author'];
   subscription: Subscription;
-  searchValue: string;
-
+  
   constructor(private pollsService: PollsService, public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -29,7 +30,7 @@ export class PollsComponent implements OnInit, OnDestroy {
   getLatestPolls() {
     this.subscription = timer(0, 10000).pipe(
       switchMap(() => this.pollsService.getPolls())
-    ).subscribe((response) => {
+    ).subscribe((response : ApiResult) => {
       this.dataSource = new MatTableDataSource(response.hits);
       this.setFilterPredicate();
     });

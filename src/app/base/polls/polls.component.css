@@ -3,6 +3,7 @@
 }
 h1 {
   text-align: center;
+  color: #ffffff;
 }
 table {
   width: 100%;
@@ -10,4 +11,5 @@ table {
 .mat-form-field {
   font-size: 14px;
   width: 100%;
+  color: #ffffff;
 }

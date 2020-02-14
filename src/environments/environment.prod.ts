@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  ApiEndPoint: 'https://hn.algolia.com/api/v1/'
 };

@@ -19,7 +19,8 @@ export class PollsComponent implements OnInit, OnDestroy {
   dataSource: MatTableDataSource<Hit>;
   displayedColumns: string[] = ['title', 'url', 'created_at', 'author'];
   subscription: Subscription;
-  
+  searchValue: string;
+
   constructor(private pollsService: PollsService, public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -30,9 +31,17 @@ export class PollsComponent implements OnInit, OnDestroy {
   getLatestPolls() {
     this.subscription = timer(0, 10000).pipe(
       switchMap(() => this.pollsService.getPolls())
-    ).subscribe((response : ApiResult) => {
-      this.dataSource = new MatTableDataSource(response.hits);
-      this.setFilterPredicate();
+    ).subscribe((response: ApiResult) => {
+      // Check Datatable Filter Value Exist.
+      if (typeof this.dataSource !== 'undefined' && this.dataSource.filter !== '') {
+        this.searchValue = this.dataSource.filter;
+        this.dataSource = new MatTableDataSource(response.hits);
+        this.setFilterPredicate();
+        this.applyFilter(this.searchValue);
+      } else {
+        this.dataSource = new MatTableDataSource(response.hits);
+        this.setFilterPredicate();
+      }
     });
   }
 

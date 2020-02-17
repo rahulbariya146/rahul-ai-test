@@ -5,8 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Angular Components.
 import { AppComponent } from './app.component';
-import { PollsComponent } from './base/polls/polls.component';
-import { PolldetailsComponent } from './base/polls/polldetails/polldetails.component';
+import { PollsComponent } from './base/components/polls/polls.component';
+import { PolldetailsComponent } from './base/components/polls/polldetails/polldetails.component';
 
 // Material Modules.
 import { MatTableModule, MatInputModule, MatDialogModule, MatButtonModule } from '@angular/material';

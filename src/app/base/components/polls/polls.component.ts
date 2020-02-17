@@ -5,8 +5,8 @@ import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { PolldetailsComponent } from './polldetails/polldetails.component';
-import { Hit } from '../../modals/hit'
-import { ApiResult } from '../../modals/api-result'
+import { Hit } from '../../modals/hit';
+import { ApiResult } from '../../modals/api-result';
 
 @Component({
   selector: 'app-polls',
